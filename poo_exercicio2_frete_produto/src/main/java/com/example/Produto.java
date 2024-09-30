@@ -9,12 +9,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-
 public abstract class Produto {
+    //atributos
     private String nome;
     private double preco;
 
+    //calcular peso
     public abstract double calcularPeso();
-    
 
 }

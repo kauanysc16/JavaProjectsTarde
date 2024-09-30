@@ -11,6 +11,7 @@ public class Main {
         list.listarNomes();
         list.removerNome("Maria");
         list.listarNomes();
+        System.out.println("==========");
         SetExemplo set = new SetExemplo();
         set.addNome("Maria");
         set.addNome("João");
@@ -21,5 +22,21 @@ public class Main {
         set.listarNomes();
         set.removerNome("Maria");
         set.listarNomes();
+        System.out.println("========");
+        MapExemplo map = new MapExemplo();
+        map.addNomeIdade("Maria",25);
+        map.addNomeIdade("João", 30);
+        map.addNomeIdade("Pedro", 40);
+        map.listarNomesIdade();
+        map.modificarValor("Pedro",35);
+        map.listarNomesIdade();
+        map.removerNomeIdade("Maria");
+        map.listarNomesIdade();
+        System.out.println("===============");
+        ArraysasListExemplo arraysAsList = new ArraysasListExemplo();
+        arraysAsList.addArray("Celso");//erro
+        arraysAsList.addNome("Celso");
+        arraysAsList.listarNomes();
+
     }
 }

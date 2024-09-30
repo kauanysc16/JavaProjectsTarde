@@ -1,34 +1,33 @@
 package com.example;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
-
+@Setter
 public class Eletronico extends Produto implements Transportavel{
-
+    //atributo
     private double volume;
+    private double peso;
 
     public Eletronico(String nome, double preco, double volume) {
         super(nome, preco);
-        this.volume = volume;
+        this.volume=volume;
     }
 
+    //calcularPeso
     @Override
-    public double calcularPeso() {
-        double peso = volume * 150;
+    public double calcularPeso(){
+        this.peso = volume*150;
         return peso;
     }
 
+    //calcularFrete
     @Override
-    public double calcularFrete() {
-        double valorFrete = calcularPeso();
-        return valorFrete;
+    public double calcularFrete(){
+        double valorFrete = peso*1;
+        return valorFrete; 
     }
-
 }

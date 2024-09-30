@@ -1,10 +1,11 @@
 package com.example;
 
 public class AgendaTelefonica {
-
+    // atributos
     private Contato[] contatos;
     private int contador;
 
+    // construtor
     public AgendaTelefonica(int maxContato) {
         contatos = new Contato[maxContato];
         contador = 0;
@@ -19,11 +20,10 @@ public class AgendaTelefonica {
         contatos[contador] = contato;
         contador++;
         System.out.println("Contato Adicionado com Sucesso");
-
     }
 
     // listar
-    public void listarContato() {
+    public void listarContatos() {
         if (contador == 0) {
             System.out.println("Agenda Vazia");
         } else {
@@ -32,28 +32,32 @@ public class AgendaTelefonica {
             }
         }
     }
-        // buscar
-        public Contato buscarContato(String nome) {
-            for (Contato contato : contatos) {
-                if (contato != null && contato.nome.equalsIgnoreCase(nome)) {
-                    return contato;
-                }
-            }
-            return null;
-        }
-        // remover
-        public boolean removerContato(String nome) {
-            for (int i = 0; i < contador; i++) {
-                if (contatos[i].nome.equalsIgnoreCase(nome)) {
-                    contatos[i] = contatos[contador - 1]; // Move the last contact to the removed position
-                    contatos[--contador] = null; // Remove reference
-                    return true;
-                }
-            }
-            return false;
-        }
 
-    boolean adicionarContato(Contato contato) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    // buscar
+    public Contato buscarContato(String nome) throws ContatoNaoEncontradoException {
+        for (int i = 0; i < contador; i++) {
+            if (contatos[i].getNome().equalsIgnoreCase(nome)) {
+                return contatos[i];
+            }
+        }
+        throw new ContatoNaoEncontradoException("Contato não Encontrado");
+    }
+
+    // remover
+    public void removerConta(String nome) throws ContatoNaoEncontradoException {
+        boolean encontrado = false;
+        for (int i = 0; i < contador; i++) {
+            if (contatos[i].getNome().equalsIgnoreCase(nome)) {
+                encontrado = true;
+                contatos[i] = contatos[contador - 1];
+                contatos[contador - 1] = null;
+                contador--;
+                System.out.println("Contato Removido com Sucesso");
+            }
+        }
+        if (!encontrado) {
+            throw new ContatoNaoEncontradoException(
+                    "Contato não Encontrado");
+        }
     }
 }

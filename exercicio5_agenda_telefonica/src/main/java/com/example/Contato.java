@@ -9,12 +9,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Contato {
-    String nome;
-    private String telefone;   
+    // atributos
+    private String nome;
+    private String telefone;
 
-public String toString() {
-return "Nome: " + nome + ", telefone: " + telefone;
-}
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", telfone: " + telefone;
+    }
+
 }

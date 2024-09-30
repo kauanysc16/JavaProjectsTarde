@@ -1,17 +1,15 @@
 package com.example;
 
-public class Livro extends Produto implements Transportavel {
+public class Livro extends Produto implements Transportavel{
 
     @Override
     public double calcularFrete() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calcularFrete'");
+        return 2;
     }
 
     @Override
     public double calcularPeso() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calcularPeso'");
+        return 0.5;
     }
-
+    
 }

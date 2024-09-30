@@ -3,114 +3,120 @@ package com.example;
 import java.util.Scanner;
 
 public class Exercicio3CalculadoraAvancada {
+    //atributos
     double a;
     double b;
     double resultado;
-    int escolha;
+    int escolha; //escolha da operacao
 
     Scanner sc = new Scanner(System.in);
 
-    // soma
-    public double somar(double a, double b) {
-        return a + b;
+    //criar o métodas das operações
+    //soma
+    public double somar(double a, double b){
+        resultado = a+b;
+        return resultado;
     }
-
-    // subtração
-    public double subtrair(double a, double b) {
-        return a - b;
+    //sub
+    public double sub(double a, double b){
+        resultado = a-b;
+        return resultado;
     }
-
-    // multiplicação
-    public double multiplicar(double a, double b) {
-        return a * b;
+    //mult
+    public double mult(double a, double b){
+        resultado = a*b;
+        return resultado;
     }
-
-    // divisão
-    public double dividir(double a, double b) {
-        if (b == 0) {
-            throw new IllegalArgumentException("Erro: Divisão por zero!");
+    //div
+    public double div(double a, double b){
+        try {
+            resultado = a/b;
+            
+        } catch (ArithmeticException e) {
+            System.err.println(e);
         }
-        return a / b;
+        return resultado;
+        
     }
-
-    // raiz
-    public double raiz(double a) {
-        if (a < 0) {
-            throw new IllegalArgumentException("Não existe raiz de número negativo");
+    //raiz
+    public double raiz(double a) throws Exception{
+        if(a<0){
+            throw new Exception("Não Existe Raiz de Nº Negativo");
         }
-        return Math.sqrt(a);
+        try {
+            resultado = Math.sqrt(a);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return resultado;
     }
 
-    public void menu() {
+    //Criar método para lançar o menu
+    public void menu(){
+        System.out.println("Calculadora");
+        System.out.println("1. Soma");
+        System.out.println("2. Subtração");
+        System.out.println("3. Multiplicação");
+        System.out.println("4. Divisão");
+        System.out.println("5. Raiz Quadrada");
+        System.out.println("6. Sair");
+
+    }
+    //Entrada de Dados
+    public void entradaDados(){
+        if (escolha >= 1 && escolha<5) {
+            System.out.println("Digite o Valor a:");
+            a = sc.nextDouble();
+            System.out.println("Digite o Valor b:");
+            b = sc.nextDouble();
+        } else if( escolha == 5){
+            System.out.println("Digite o Valor a:");
+            a = sc.nextDouble();
+        } else if (escolha ==6) {
+            System.out.println("Saindo....");
+        } else{
+            System.out.println("Digite um Valor Válido");
+        }
+    }
+
+    //Calculadora
+    public void calculadora(){
         do {
-            System.out.println("\n--- Calculadora Avançada ---");
-            System.out.println("1. Soma");
-            System.out.println("2. Subtração");
-            System.out.println("3. Multiplicação");
-            System.out.println("4. Divisão");
-            System.out.println("5. Raiz Quadrada");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
-            escolha = sc.nextInt();
-
+            menu();
             try {
+                escolha = sc.nextInt();
                 switch (escolha) {
                     case 1:
-                        System.out.print("Digite o primeiro número: ");
-                        a = sc.nextDouble();
-                        System.out.print("Digite o segundo número: ");
-                        b = sc.nextDouble();
-                        resultado = somar(a, b);
-                        System.out.println("Resultado: " + resultado);
+                        entradaDados();
+                        somar(a, b);
                         break;
-
                     case 2:
-                        System.out.print("Digite o primeiro número: ");
-                        a = sc.nextDouble();
-                        System.out.print("Digite o segundo número: ");
-                        b = sc.nextDouble();
-                        resultado = subtrair(a, b);
-                        System.out.println("Resultado: " + resultado);
+                        entradaDados();
+                        sub(a, b);
                         break;
-
                     case 3:
-                        System.out.print("Digite o primeiro número: ");
-                        a = sc.nextDouble();
-                        System.out.print("Digite o segundo número: ");
-                        b = sc.nextDouble();
-                        resultado = multiplicar(a, b);
-                        System.out.println("Resultado: " + resultado);
+                        entradaDados();
+                        mult(a, b);
                         break;
-
                     case 4:
-                        System.out.print("Digite o primeiro número: ");
-                        a = sc.nextDouble();
-                        System.out.print("Digite o segundo número: ");
-                        b = sc.nextDouble();
-                        resultado = dividir(a, b);
-                        System.out.println("Resultado: " + resultado);
+                        entradaDados();
+                        div(a, b);
                         break;
-
                     case 5:
-                        System.out.print("Digite um número: ");
-                        a = sc.nextDouble();
-                        resultado = raiz(a);
-                        System.out.println("Resultado: " + resultado);
+                        entradaDados();
+                        raiz(a);
                         break;
-
-                    case 0:
-                        System.out.println("Saindo...");
+                    case 6:
+                        entradaDados();
                         break;
-
                     default:
-                        System.out.println("Opção inválida! Tente novamente.");
+                        entradaDados();
                         break;
-                }
-            } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                }                
             } catch (Exception e) {
-                System.err.println("Ocorreu um erro: " + e.getMessage());
+               System.err.println(e);
             }
-        } while (escolha != 0);
+        } while (escolha !=6);
     }
+
 }
